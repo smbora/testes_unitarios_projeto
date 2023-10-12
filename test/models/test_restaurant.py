@@ -1,25 +1,31 @@
 from src.models.restaurant import Restaurant
 class TestRestaurant:
 
+    restaurant_name = "Chez Restaurant"
+    cuisine_type = "French cuisine"
     def test_describe_restaurant(self):
-        self.restaurant = Restaurant("Chez Restaurant", "French Cuisine")
-        output = self.restaurant
-
-        descricao esperada = f"Esse restaturante chama {self.cuisine_type} and serve {self.cuisine_type}."
-        self.assertIN(descricao_esperada, output)
-
-        consumidores_esperados = f"Esse restaturante está servindo {self.number_served} consumidores desde que está aberto."
-        self.assertIN(consumidores_esperados, output)
-
-    def test_open_restaurant(self):
-        self.restaurant = Restaurant("Chez Restaurant", "French Cuisine")
-
-        assert False
-
+        restaurant = Restaurant(self.restaurant_name, self.cuisine_type)
+        resultado_esperado = f'Esse restaurante se chama {self.restaurant_name} e serve {self.cuisine_type} e atendeu  {self.number_served} consumidores desde que está aberto.'
+        resultado = restaurant.describe_restaurant()
+        assert resultado == resultado_esperado
+    def test_open_restaurant_aberto(self):
+        restaurant = Restaurant(self.restaurant_name, self.cuisine_type)
+        restaurant.open_restaurant()
+        resultado_esperado = f"{self.restaurant_name} já está aberto!"
+        assert restaurant.open_restaurant() == resultado_esperado
+    def test_open_restaurant_fechado(self):
+        restaurant = Restaurant(self.restaurant_name, self.cuisine_type)
+        restaurant.open_restaurant()
+        resultado_esperado = f"{self.restaurant_name} agora está aberto!"
+        assert restaurant.open_restaurant() == resultado_esperado
     def test_close_restaurant(self):
-        self.restaurant = Restaurant("Chez Restaurant", "French Cuisine")
+        restaurant = Restaurant(self.restaurant_name, self.cuisine_type)
+        restaurant.close_restaurant()
         assert False
-
+    def test_close_restaurant_aberto (self):
+        restaurant = Restaurant(self.restaurant_name, self.cuisine_type)
+        restaurant.close_restaurant()
+        assert False
     def test_set_number_served(self,total_customers):
         total_customers = 5
         self.restaurant = Restaurant("Chez Restaurant", "French Cuisine")

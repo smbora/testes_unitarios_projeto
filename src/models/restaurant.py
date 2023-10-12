@@ -9,18 +9,24 @@ class Restaurant:
 
     def describe_restaurant(self):
         """Imprima uma descrição simples da instância do restaurante."""
-        print(f"Esse restaturante chama {self.cuisine_type} and serve {self.cuisine_type}.")
-        print(f"Esse restaturante está servindo {self.number_served} consumidores desde que está aberto.")
+        # Bug:Alguns erros de digitação, como "restaturante", "and serve" no lugar de "serve"
+        #print(f"Esse restaurante chama {self.cuisine_type} and serve {self.cuisine_type}.")
+        #print(f"Esse restaurante está servindo {self.number_served} consumidores desde que está aberto.")
+        return f'Esse restaurante se chama {self.restaurant_name} e serve {self.cuisine_type} e atendeu  {self.number_served} consumidores desde que está aberto.'
 
     def open_restaurant(self):
         """Imprima uma mensagem indicando que o restaurante está aberto para negócios."""
-        if not self.open:
-            self.open = False #self.open = True ?
-            self.number_served = -2
-            print(f"{self.restaurant_name} agora está aberto!")
-        else:
-            print(f"{self.restaurant_name} já está aberto!")
-
+        # if not self.open:
+        #     self.open = False #self.open = True ?
+        #     self.number_served = -2
+        #     print(f"{self.restaurant_name} agora está aberto!")
+        # else:
+        #     print(f"{self.restaurant_name} já está aberto!")
+        if self.open:
+            return f"{self.restaurant_name} já está aberto!"
+        self.open = True
+        self.number_served = 0
+        return f"{self.restaurant_name} agora está aberto!"
     def close_restaurant(self):
         """Imprima uma mensagem indicando que o restaurante está fechado para negócios."""
         if self.open:
